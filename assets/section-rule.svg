@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="34" viewBox="0 0 1200 34" role="img" aria-hidden="true" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <defs>
+    <linearGradient id="div-base" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#43E7FF" stop-opacity="0"/>
+      <stop offset="15%" stop-color="#43E7FF" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#9475FF" stop-opacity="0.8"/>
+      <stop offset="85%" stop-color="#FFB454" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFB454" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="div-sheen" gradientUnits="userSpaceOnUse" x1="-250" y1="0" x2="-20" y2="0">
+      <stop offset="0%" stop-color="#FFF" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#43E7FF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="0 0; 1450 0; 1450 0" keyTimes="0; 0.5; 1" dur="5.5s" repeatCount="indefinite"/>
+    </linearGradient>
+    <filter id="glow-div" x="-30%" y="-150%" width="160%" height="400%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    .draw-div {
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      animation: drawDivider 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes drawDivider { to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .draw-div { stroke-dashoffset: 0 !important; animation: none !important; }
+      animateTransform, animate { display: none !important; }
+    }
+  </style>
+
+  <!-- Base Line with Stroke Drawing -->
+  <line x1="40" y1="17" x2="1160" y2="17" stroke="url(#div-base)" stroke-width="1.4" class="draw-div"/>
+
+  <!-- Sweeping Highlight Sheen -->
+  <line x1="40" y1="17" x2="1160" y2="17" stroke="url(#div-sheen)" stroke-width="2.2" stroke-linecap="round" filter="url(#glow-div)"/>
+
+  <!-- Tiny Traveling Light Pulse -->
+  <circle cy="17" r="3" fill="#43E7FF" filter="url(#glow-div)">
+    <animate attributeName="cx" values="60; 1140; 60" dur="7s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1; .45 0 .55 1"/>
+    <animate attributeName="opacity" values="0.4; 1; 0.4" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Diamond Center Marker -->
+  <g transform="translate(600, 17)">
+    <polygon points="0,-6 6,0 0,6 -6,0" fill="#080B14" stroke="#43E7FF" stroke-width="1.5" filter="url(#glow-div)"/>
+    <circle cx="0" cy="0" r="1.8" fill="#FFB454"/>
+  </g>
+</svg>

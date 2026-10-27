@@ -1,0 +1,13 @@
+# Archives
+*.zip
+*.tar.gz
+*.tgz
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS artifacts
+.DS_Store
+Thumbs.db

@@ -1,0 +1,314 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <title id="title">Koushik Katkam — Obsidian Aurora Digital Lab</title>
+  <desc id="desc">Animated hero banner for Koushik Katkam featuring Obsidian Aurora theme, dynamic orbital systems, traveling telemetry nodes, gradient sheens, and data science architecture.</desc>
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bg-canvas" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080B14"/>
+      <stop offset="50%" stop-color="#0B101E"/>
+      <stop offset="100%" stop-color="#101827"/>
+    </linearGradient>
+
+    <!-- Floating Aurora Light Fields -->
+    <radialGradient id="cyan-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#43E7FF" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#43E7FF" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#080B14" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="violet-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#9475FF" stop-opacity="0.25"/>
+      <stop offset="65%" stop-color="#9475FF" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#080B14" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="amber-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFB454" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#080B14" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Linear Accent Lines -->
+    <linearGradient id="aurora-line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#43E7FF"/>
+      <stop offset="50%" stop-color="#9475FF"/>
+      <stop offset="100%" stop-color="#FFB454"/>
+    </linearGradient>
+    <linearGradient id="orbit-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#43E7FF" stop-opacity="0.7"/>
+      <stop offset="50%" stop-color="#9475FF" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#080B14" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="orbit-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9475FF" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#FFB454" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#080B14" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <!-- Moving Gradient Sheen across Name -->
+    <linearGradient id="name-sheen" gradientUnits="userSpaceOnUse" x1="-300" y1="0" x2="-20" y2="0">
+      <stop offset="0%" stop-color="#F2F6FF" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#43E7FF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#F2F6FF" stop-opacity="0"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="0 0; 950 0; 950 0" keyTimes="0; 0.4; 1" dur="7s" begin="1.5s" repeatCount="indefinite"/>
+    </linearGradient>
+
+    <!-- Faint Horizontal Scanning Beam -->
+    <linearGradient id="scan-beam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#43E7FF" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#43E7FF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#43E7FF" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Grid Patterns -->
+    <pattern id="lab-grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#43E7FF" stroke-opacity="0.05" stroke-width="1"/>
+      <circle cx="36" cy="36" r="0.8" fill="#43E7FF" fill-opacity="0.2"/>
+    </pattern>
+    <radialGradient id="grid-mask-grad" cx="65%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#fff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="grid-mask">
+      <rect width="1200" height="380" fill="url(#grid-mask-grad)"/>
+    </mask>
+
+    <!-- Glow Filter -->
+    <filter id="neon-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    .mono-font { font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace; }
+    .sans-font { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    /* CSS Keyframe Animations */
+    .fade-in { animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .slide-up-1 { animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
+    .slide-up-2 { animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both; }
+    .slide-up-3 { animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both; }
+    .draw-rule { stroke-dasharray: 600; stroke-dashoffset: 600; animation: drawLine 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes drawLine { to { stroke-dashoffset: 0; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in, .slide-up-1, .slide-up-2, .slide-up-3 { animation: none !important; opacity: 1 !important; transform: none !important; }
+      .draw-rule { stroke-dashoffset: 0 !important; animation: none !important; }
+      animate, animateTransform { display: none !important; }
+    }
+  </style>
+
+  <!-- Base Background -->
+  <rect width="1200" height="380" rx="20" fill="url(#bg-canvas)"/>
+
+  <!-- Ambient Light Fields with Slow Organic Drift -->
+  <g>
+    <ellipse cx="980" cy="160" rx="360" ry="240" fill="url(#cyan-glow)">
+      <animateTransform attributeName="transform" type="translate" values="0 0; -40 25; 0 0" dur="20s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1; .45 0 .55 1"/>
+    </ellipse>
+    <ellipse cx="1060" cy="270" rx="320" ry="220" fill="url(#violet-glow)">
+      <animateTransform attributeName="transform" type="translate" values="0 0; 35 -30; 0 0" dur="26s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1; .45 0 .55 1"/>
+    </ellipse>
+    <ellipse cx="140" cy="320" rx="280" ry="180" fill="url(#amber-glow)">
+      <animateTransform attributeName="transform" type="translate" values="0 0; 25 -20; 0 0" dur="22s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1; .45 0 .55 1"/>
+    </ellipse>
+  </g>
+
+  <!-- Masked Technical Grid -->
+  <rect width="1200" height="380" fill="url(#lab-grid)" mask="url(#grid-mask)"/>
+
+  <!-- Slow Horizontal Scanning Beam Across Grid -->
+  <rect x="0" y="-120" width="1200" height="120" fill="url(#scan-beam)">
+    <animate attributeName="y" values="-120; 420" dur="9s" begin="1.5s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Precision Cyber Border -->
+  <rect x="1.5" y="1.5" width="1197" height="377" rx="18.5" fill="none" stroke="#43E7FF" stroke-opacity="0.18" stroke-width="1"/>
+  <path d="M 18 1.5 L 65 1.5 M 1.5 18 L 1.5 65" fill="none" stroke="#43E7FF" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 1182 1.5 L 1135 1.5 M 1198.5 18 L 1198.5 65" fill="none" stroke="#43E7FF" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 18 378.5 L 65 378.5 M 1.5 362 L 1.5 315" fill="none" stroke="#9475FF" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 1182 378.5 L 1135 378.5 M 1198.5 362 L 1198.5 315" fill="none" stroke="#9475FF" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Top Coordinates & Status Bar -->
+  <g class="mono-font fade-in" font-size="10.5" fill="#9BA9BF" opacity="0.75">
+    <text x="52" y="32">SYSTEM: LAB_ENV // 0x4B4F5553</text>
+    <text x="460" y="32">LAT: 17.9784° N · LON: 79.5941° E (WARANGAL)</text>
+    <g transform="translate(1005, 23)">
+      <circle cx="5" cy="5" r="4" fill="#43E7FF" filter="url(#neon-glow)">
+        <animate attributeName="opacity" values="1; 0.35; 1" dur="2.2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="18" y="9" fill="#43E7FF" font-weight="700">STATUS: ONLINE ◈ DIGITAL_LAB</text>
+    </g>
+  </g>
+
+  <!-- Drifting Luminous Particles -->
+  <g>
+    <circle cx="540" cy="110" r="1.5" fill="#43E7FF">
+      <animate attributeName="opacity" values="0; 0.9; 0" dur="4.5s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="110; 80" dur="4.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="680" cy="65" r="1.8" fill="#9475FF">
+      <animate attributeName="opacity" values="0; 0.85; 0" dur="5.8s" begin="1s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="65; 38" dur="5.8s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="820" cy="330" r="1.4" fill="#FFB454">
+      <animate attributeName="opacity" values="0; 0.9; 0" dur="5.2s" begin="2s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="330; 302" dur="5.2s" begin="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1110" cy="90" r="1.6" fill="#43E7FF">
+      <animate attributeName="opacity" values="0; 0.75; 0" dur="4.8s" begin="0.5s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="90; 62" dur="4.8s" begin="0.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="480" cy="270" r="1.2" fill="#9475FF">
+      <animate attributeName="opacity" values="0; 0.8; 0" dur="6.2s" begin="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="270; 240" dur="6.2s" begin="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="750" cy="350" r="1.5" fill="#43E7FF">
+      <animate attributeName="opacity" values="0; 0.85; 0" dur="5s" begin="1.8s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="350; 322" dur="5s" begin="1.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- =========================================================
+       DYNAMIC CONTINUOUSLY ANIMATED ORBITAL CENTERPIECE
+       ========================================================= -->
+  <g transform="translate(940, 190)" class="fade-in">
+    <!-- Orbit 1: Outer Slow Ambient Orbit (Radius 150) -->
+    <circle cx="0" cy="0" r="150" fill="none" stroke="#9475FF" stroke-width="1" stroke-opacity="0.18" stroke-dasharray="4 8">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="110s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Orbit 2: Counter-Rotating Ring with Gradient (Radius 120) -->
+    <ellipse cx="0" cy="0" rx="122" ry="118" fill="none" stroke="url(#orbit-grad-1)" stroke-width="1.4">
+      <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="75s" repeatCount="indefinite"/>
+    </ellipse>
+
+    <!-- Orbit 3: Inner Fast Dash Orbit (Radius 88) -->
+    <circle cx="0" cy="0" r="88" fill="none" stroke="#43E7FF" stroke-width="1.2" stroke-opacity="0.32" stroke-dasharray="6 6">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="48s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Orbit 4: Amber Resonant Path (Radius 56) -->
+    <ellipse cx="0" cy="0" rx="58" ry="54" fill="none" stroke="url(#orbit-grad-2)" stroke-width="1" stroke-dasharray="3 4">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="32s" repeatCount="indefinite"/>
+    </ellipse>
+
+    <!-- Traveling Orbit Node 1 (Clockwise on r=150) -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="24s" repeatCount="indefinite"/>
+      <circle cx="150" cy="0" r="3.5" fill="#43E7FF" filter="url(#neon-glow)"/>
+      <circle cx="150" cy="0" r="1.5" fill="#F2F6FF"/>
+    </g>
+
+    <!-- Traveling Orbit Node 2 (Counter-Clockwise on r=120) -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="180" to="-180" dur="16s" repeatCount="indefinite"/>
+      <circle cx="122" cy="0" r="3" fill="#9475FF" filter="url(#neon-glow)"/>
+      <circle cx="122" cy="0" r="1.2" fill="#F2F6FF"/>
+    </g>
+
+    <!-- Traveling Orbit Node 3 (Clockwise on r=88) -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="45" to="405" dur="11s" repeatCount="indefinite"/>
+      <circle cx="88" cy="0" r="2.5" fill="#FFB454" filter="url(#neon-glow)"/>
+    </g>
+
+    <!-- Central Concentric Hexagon with Soft Breathing Glow -->
+    <polygon points="0,-68 58.9,-34 58.9,34 0,68 -58.9,34 -58.9,-34" fill="#101827" fill-opacity="0.82" stroke="#43E7FF" stroke-width="1.8" filter="url(#neon-glow)">
+      <animate attributeName="stroke-opacity" values="0.4; 0.9; 0.4" dur="4s" repeatCount="indefinite"/>
+    </polygon>
+    <polygon points="0,-46 39.8,-23 39.8,23 0,46 -39.8,23 -39.8,-23" fill="none" stroke="#9475FF" stroke-width="1.2" stroke-opacity="0.65">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="60s" repeatCount="indefinite"/>
+    </polygon>
+
+    <!-- Central Core Core Node -->
+    <circle cx="0" cy="0" r="20" fill="#080B14" stroke="url(#aurora-line)" stroke-width="2.2"/>
+    <circle cx="0" cy="0" r="8" fill="#43E7FF" filter="url(#neon-glow)">
+      <animate attributeName="r" values="7; 9.5; 7" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="3" fill="#F2F6FF"/>
+
+    <!-- Circuit Branch Pulse traveling Left into typography -->
+    <path d="M -150 0 L -230 0 L -260 -45 L -350 -45" fill="none" stroke="#43E7FF" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <circle cx="-260" cy="-45" r="3" fill="#43E7FF">
+      <animate attributeName="opacity" values="0.3; 1; 0.3" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- =========================================================
+       HERO IDENTITY & TYPOGRAPHY WITH ANIMATED SHEEN
+       ========================================================= -->
+  <!-- Top Category Chip -->
+  <g transform="translate(68, 62)" class="fade-in">
+    <rect width="320" height="28" rx="14" fill="#101827" stroke="#43E7FF" stroke-opacity="0.4" stroke-width="1.2"/>
+    <circle cx="15" cy="14" r="4.5" fill="#43E7FF" filter="url(#neon-glow)">
+      <animate attributeName="opacity" values="1; 0.4; 1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="15" cy="14" r="2" fill="#F2F6FF"/>
+    <text x="30" y="18" class="mono-font" font-size="11.5" font-weight="700" fill="#43E7FF" letter-spacing="1.5">OBSIDIAN AURORA · DIGITAL LAB</text>
+  </g>
+
+  <!-- Primary Name Heading with Moving Sheen Layer -->
+  <g transform="translate(66, 148)" class="slide-up-1">
+    <!-- Base Name -->
+    <text x="0" y="0" class="sans-font" font-size="58" font-weight="900" fill="#F2F6FF" letter-spacing="-1.5">
+      Koushik Katkam
+    </text>
+    <!-- Overlay Gradient Sheen that sweeps across the name -->
+    <text x="0" y="0" class="sans-font" font-size="58" font-weight="900" fill="url(#name-sheen)" letter-spacing="-1.5">
+      Koushik Katkam
+    </text>
+  </g>
+
+  <!-- Animated Drawing Accent Rule -->
+  <line x1="68" y1="172" x2="628" y2="172" stroke="url(#aurora-line)" stroke-width="3" stroke-linecap="round" class="draw-rule"/>
+
+  <!-- Subtitle Line 1 -->
+  <g transform="translate(68, 214)" class="slide-up-2">
+    <text class="sans-font" font-size="22" font-weight="600" fill="#F2F6FF">
+      Full-Stack Architecture <tspan fill="#43E7FF">·</tspan> AI &amp; Data Systems <tspan fill="#9475FF">·</tspan> Cybersecurity
+    </text>
+  </g>
+
+  <!-- Subtitle Line 2 -->
+  <g transform="translate(68, 246)" class="slide-up-3">
+    <text class="sans-font" font-size="18" font-weight="500" fill="#9BA9BF">
+      Creative WebGL &amp; 3D Graphics <tspan fill="#FFB454">◈</tspan> B.Tech Data Science @ Kakatiya University
+    </text>
+  </g>
+
+  <!-- Technology Focus Pills with Interactive Glows -->
+  <g transform="translate(68, 280)" class="slide-up-3">
+    <!-- Pill 1: Systems -->
+    <g transform="translate(0, 0)">
+      <rect width="180" height="32" rx="7" fill="#101827" stroke="#43E7FF" stroke-opacity="0.35" stroke-width="1"/>
+      <circle cx="14" cy="16" r="3.5" fill="#43E7FF"/>
+      <text x="26" y="20" class="mono-font" font-size="11" font-weight="600" fill="#F2F6FF">Next.js · FastAPI · Rust</text>
+    </g>
+
+    <!-- Pill 2: AI & Graphics -->
+    <g transform="translate(192, 0)">
+      <rect width="198" height="32" rx="7" fill="#101827" stroke="#9475FF" stroke-opacity="0.4" stroke-width="1"/>
+      <circle cx="14" cy="16" r="3.5" fill="#9475FF"/>
+      <text x="26" y="20" class="mono-font" font-size="11" font-weight="600" fill="#F2F6FF">Gemini · PyTorch · Three.js</text>
+    </g>
+
+    <!-- Pill 3: Focus -->
+    <g transform="translate(402, 0)">
+      <rect width="176" height="32" rx="7" fill="#101827" stroke="#FFB454" stroke-opacity="0.45" stroke-width="1"/>
+      <circle cx="14" cy="16" r="3.5" fill="#FFB454"/>
+      <text x="26" y="20" class="mono-font" font-size="11" font-weight="600" fill="#F2F6FF">Systems · AI · WebGL</text>
+    </g>
+  </g>
+
+  <!-- Watermark Footer inside Banner -->
+  <g class="mono-font fade-in" font-size="10" fill="#9BA9BF" opacity="0.45">
+    <text x="68" y="348">DEVELOPER PORTFOLIO: @Koushikkatkam</text>
+    <text x="420" y="348">// PROTOTYPE ➔ BENCHMARK ➔ SCALE</text>
+  </g>
+</svg>

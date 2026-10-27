@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="140" viewBox="0 0 460 140" role="img" aria-labelledby="sig-title" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <title id="sig-title">Koushik Katkam — Digital Lab Signature</title>
+  <defs>
+    <radialGradient id="sig-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#43E7FF" stop-opacity="0.28"/>
+      <stop offset="60%" stop-color="#9475FF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#080B14" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sig-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#43E7FF"/>
+      <stop offset="50%" stop-color="#9475FF"/>
+      <stop offset="100%" stop-color="#FFB454"/>
+    </linearGradient>
+    <filter id="sig-blur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    .sig-draw {
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: drawSig 2.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
+    .sig-mono {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      fill: #9BA9BF;
+    }
+    .sig-fade {
+      animation: sigFade 1.6s ease-in 1.2s both;
+    }
+    @keyframes drawSig { to { stroke-dashoffset: 0; } }
+    @keyframes sigFade { from { opacity: 0; } to { opacity: 0.85; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sig-draw { stroke-dashoffset: 0 !important; animation: none !important; }
+      .sig-fade { opacity: 0.85 !important; animation: none !important; }
+      animate { display: none !important; }
+    }
+  </style>
+
+  <!-- Ambient Glow Center -->
+  <ellipse cx="230" cy="65" rx="190" ry="55" fill="url(#sig-glow)"/>
+
+  <!-- Rising Sparks -->
+  <g>
+    <circle cx="110" cy="100" r="1.3" fill="#43E7FF">
+      <animate attributeName="cy" values="100; 30" dur="3.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0; 0.9; 0" dur="3.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="230" cy="115" r="1.6" fill="#9475FF">
+      <animate attributeName="cy" values="115; 40" dur="4.5s" begin="0.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0; 0.85; 0" dur="4.5s" begin="0.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="340" cy="95" r="1.2" fill="#FFB454">
+      <animate attributeName="cy" values="95; 25" dur="3.5s" begin="1.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0; 0.9; 0" dur="3.5s" begin="1.4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Stylized Geometric "KK" Monogram Emblem on Left -->
+  <g transform="translate(62, 58)">
+    <polygon points="0,-24 20,-12 20,12 0,24 -20,12 -20,-12" fill="#101827" stroke="#43E7FF" stroke-width="1.4" filter="url(#sig-blur)"/>
+    <path d="M -8 -12 L -8 12 M -8 0 L 6 -12 M -8 0 L 7 12" stroke="#43E7FF" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Fluid Signature Path for "Koushik Katkam" -->
+  <g transform="translate(100, 32)">
+    <!-- First Name: Koushik -->
+    <path class="sig-draw" d="M 15 48 C 12 20, 20 8, 25 10 C 30 12, 24 35, 26 50 M 23 28 C 30 20, 38 18, 43 25 C 46 29, 32 40, 48 48 C 53 44, 58 35, 63 35 C 70 35, 68 50, 75 48 C 82 46, 85 36, 92 36 C 98 36, 98 48, 105 48 C 112 48, 115 32, 120 32 C 125 32, 126 48, 134 48 C 138 48, 142 36, 146 36 C 150 36, 152 48, 158 48 C 164 48, 172 26, 175 22 C 172 32, 175 48, 185 46" fill="none" stroke="url(#sig-stroke)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#sig-blur)"/>
+    
+    <!-- Last Name: Katkam -->
+    <path class="sig-draw" d="M 205 48 C 202 22, 210 10, 215 12 C 220 14, 214 36, 216 50 M 213 28 C 220 20, 228 18, 233 26 C 236 30, 224 40, 238 48 C 243 45, 248 36, 254 36 C 260 36, 258 48, 266 48 M 264 26 L 264 48 M 258 34 L 270 34 C 274 34, 276 22, 280 20 C 278 30, 280 48, 288 46 C 293 45, 298 36, 304 36 C 310 36, 312 48, 322 46" fill="none" stroke="url(#sig-stroke)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" filter="url(#sig-blur)"/>
+
+    <!-- Dynamic Flow Underline Flourish -->
+    <path class="sig-draw" d="M 22 58 C 75 52, 180 50, 260 52 C 300 53, 335 55, 330 62 C 325 66, 290 64, 270 65" fill="none" stroke="#43E7FF" stroke-opacity="0.75" stroke-width="1.4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Technical Monospace Subtext -->
+  <g class="sig-fade" transform="translate(230, 122)">
+    <text x="0" y="0" class="sig-mono" text-anchor="middle">KOUSHIK KATKAM ◈ OBSIDIAN AURORA DIGITAL LAB</text>
+  </g>
+</svg>

@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Koushik Katkam (@Koushikkatkam) — Obsidian Aurora Digital Lab</title>
+  <meta name="description" content="Koushik Katkam developer portfolio and GitHub profile README preview. Full-stack development, AI & data systems, cybersecurity, WebGL and creative code.">
+  <script src="assets/marked.min.js"></script>
+  <style>
+    :root {
+      --bg-canvas: #080B14;
+      --bg-surface: #101827;
+      --bg-surface-hover: #172338;
+      --border-color: rgba(67, 231, 255, 0.22);
+      --border-subtle: #1c283f;
+      --text-main: #F2F6FF;
+      --text-muted: #9BA9BF;
+      --accent-cyan: #43E7FF;
+      --accent-violet: #9475FF;
+      --accent-amber: #FFB454;
+      --table-border: #1e293b;
+      --table-bg: #0d1524;
+      --table-alt: #101a2d;
+      --card-radius: 16px;
+      --header-blur: 16px;
+      --ease-out-cubic: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-canvas: #f6f8fa;
+      --bg-surface: #ffffff;
+      --bg-surface-hover: #f3f4f6;
+      --border-color: #d0d7de;
+      --border-subtle: #e1e4e8;
+      --text-main: #1f2328;
+      --text-muted: #656d76;
+      --accent-cyan: #0969da;
+      --accent-violet: #8250df;
+      --accent-amber: #bf8700;
+      --table-border: #d0d7de;
+      --table-bg: #ffffff;
+      --table-alt: #f6f8fa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      font-size: clamp(14px, 1.1vw, 15.5px);
+      line-height: 1.65;
+      padding-bottom: 80px;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Scroll Progress Bar at very top */
+    .scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet), var(--accent-amber));
+      z-index: 2000;
+      box-shadow: 0 0 10px var(--accent-cyan);
+      transition: width 0.08s ease-out;
+    }
+
+    /* Particle Canvas Background */
+    #particle-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.85;
+    }
+
+    /* Interactive Pointer Spotlight */
+    #cursor-spotlight {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(67, 231, 255, 0.05) 0%, rgba(148, 117, 255, 0.03) 40%, transparent 70%);
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    /* Custom Sleek Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-canvas);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-subtle);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-cyan);
+    }
+
+    /* Top Navigation Bar with Dynamic Hide/Reveal */
+    header {
+      background-color: rgba(16, 24, 39, 0.88);
+      backdrop-filter: blur(var(--header-blur));
+      -webkit-backdrop-filter: blur(var(--header-blur));
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 12px 24px;
+      transition: transform 0.3s var(--ease-out-cubic), background-color 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    header.nav-hidden {
+      transform: translateY(-100%);
+    }
+
+    [data-theme="light"] header {
+      background-color: rgba(255, 255, 255, 0.88);
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand svg {
+      fill: var(--accent-cyan);
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 8px rgba(67, 231, 255, 0.5));
+      transition: transform 0.3s ease;
+    }
+
+    .brand:hover svg {
+      transform: rotate(15deg) scale(1.08);
+    }
+
+    .repo-path {
+      font-weight: 700;
+      font-size: clamp(13px, 1.2vw, 15px);
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .repo-path a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .repo-path a:hover {
+      color: #72e4ff;
+      text-decoration: underline;
+    }
+
+    .server-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(67, 231, 255, 0.1);
+      border: 1px solid rgba(67, 231, 255, 0.25);
+      color: var(--accent-cyan);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+      animation: pulse 2.2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.8); }
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Magnetic & Glass Buttons */
+    .tab-btn, .theme-toggle, .btn-magnetic {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.15s ease-out;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 38px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tab-btn kbd {
+      font-size: 10px;
+      font-family: monospace;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-muted);
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      border-color: var(--accent-cyan);
+      background: var(--bg-surface-hover);
+      box-shadow: 0 0 14px rgba(67, 231, 255, 0.25);
+    }
+
+    .tab-btn.active {
+      background: rgba(67, 231, 255, 0.12);
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      font-weight: 600;
+      box-shadow: 0 0 14px rgba(67, 231, 255, 0.3);
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent-amber);
+      color: var(--accent-amber);
+      box-shadow: 0 0 14px rgba(255, 180, 84, 0.25);
+    }
+
+    /* =========================================================
+       SCROLLING EXPERTISE MARQUEE TICKER
+       ========================================================= */
+    .ticker-wrap {
+      width: 100%;
+      overflow: hidden;
+      background: rgba(8, 11, 20, 0.85);
+      border-bottom: 1px solid rgba(67, 231, 255, 0.15);
+      position: relative;
+      z-index: 10;
+      padding: 8px 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .ticker-content {
+      display: flex;
+      width: max-content;
+      animation: tickerScroll 38s linear infinite;
+    }
+
+    .ticker-wrap:hover .ticker-content {
+      animation-play-state: paused;
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 20px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .ticker-item span.cyan { color: var(--accent-cyan); }
+    .ticker-item span.violet { color: var(--accent-violet); }
+    .ticker-item span.amber { color: var(--accent-amber); }
+    .ticker-item span.dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      opacity: 0.6;
+    }
+
+    @keyframes tickerScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* Main Responsive Container */
+    main {
+      max-width: 1080px;
+      margin: 28px auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .profile-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--card-radius);
+      padding: clamp(20px, 4vw, 44px);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.45);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    /* Ambient animated top light beam in card */
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent-cyan) 30%, var(--accent-violet) 70%, transparent 100%);
+      background-size: 200% 100%;
+      animation: sweepGlow 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes sweepGlow {
+      0% { background-position: 0% 0%; opacity: 0.6; }
+      100% { background-position: 100% 0%; opacity: 1; }
+    }
+
+    /* =========================================================
+       SCROLL-TRIGGERED REVEAL ANIMATIONS
+       ========================================================= */
+    .reveal-elem {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.8s var(--ease-out-cubic), transform 0.8s var(--ease-out-cubic);
+      will-change: opacity, transform;
+    }
+
+    .reveal-elem.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Markdown Body Core Styling */
+    .markdown-body {
+      color: var(--text-main);
+      font-family: inherit;
+      word-wrap: break-word;
+    }
+
+    .markdown-body h1,
+    .markdown-body h2,
+    .markdown-body h3,
+    .markdown-body h4 {
+      color: var(--text-main);
+      font-weight: 700;
+      margin-top: 34px;
+      margin-bottom: 16px;
+      line-height: 1.35;
+      position: relative;
+    }
+
+    .markdown-body h1 {
+      font-size: clamp(1.6em, 3.5vw, 2.2em);
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.35em;
+    }
+
+    .markdown-body h2 {
+      font-size: clamp(1.25em, 2.4vw, 1.6em);
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.35em;
+      letter-spacing: -0.3px;
+    }
+
+    .markdown-body h3 {
+      font-size: clamp(1.1em, 2vw, 1.3em);
+      margin-top: 24px;
+    }
+
+    .markdown-body p {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 1em;
+    }
+
+    .markdown-body a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      transition: color 0.15s ease, text-shadow 0.2s ease;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .markdown-body a:hover {
+      color: #72e4ff;
+      text-shadow: 0 0 8px rgba(67, 231, 255, 0.45);
+      text-decoration: underline;
+    }
+
+    .markdown-body hr {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+      border: none;
+      margin: 36px 0;
+    }
+
+    .markdown-body blockquote {
+      padding: 14px 20px;
+      color: var(--text-muted);
+      border-left: 4px solid var(--accent-violet);
+      background: rgba(148, 117, 255, 0.08);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 22px;
+      font-size: 0.96em;
+      box-shadow: 0 2px 12px rgba(148, 117, 255, 0.05);
+    }
+
+    .markdown-body blockquote > :last-child {
+      margin-bottom: 0;
+    }
+
+    .markdown-body ul,
+    .markdown-body ol {
+      margin-top: 0;
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+
+    .markdown-body li {
+      margin-bottom: 8px;
+    }
+
+    .markdown-body code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 86%;
+      background-color: rgba(67, 231, 255, 0.08);
+      padding: 0.2em 0.45em;
+      border-radius: 5px;
+      color: var(--accent-cyan);
+      border: 1px solid rgba(67, 231, 255, 0.2);
+      transition: background-color 0.2s ease;
+    }
+
+    .markdown-body pre {
+      background-color: #070d18;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 18px;
+      overflow-x: auto;
+      margin-bottom: 22px;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+    }
+
+    .markdown-body pre code {
+      background-color: transparent;
+      padding: 0;
+      border: none;
+      color: var(--text-main);
+      font-size: clamp(12px, 1.8vw, 13.5px);
+      line-height: 1.55;
+    }
+
+    /* Images & SVGs: Fluid & Non-overflowing */
+    .markdown-body img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: inline-block;
+      vertical-align: middle;
+      transition: transform 0.4s var(--ease-out-cubic);
+    }
+
+    /* Badges alignment and flex wrapping */
+    .markdown-body div[align="center"] {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .markdown-body div[align="center"] p {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    /* =========================================================
+       INTERACTIVE 3D PERSPECTIVE PROJECT CARDS
+       ========================================================= */
+    .markdown-body table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 12px;
+      margin-top: 18px;
+      margin-bottom: 26px;
+      background: transparent;
+      border: none;
+    }
+
+    .markdown-body table tr {
+      background: transparent;
+      border: none;
+    }
+
+    .markdown-body table td {
+      background-color: var(--table-bg);
+      border: 1px solid var(--table-border);
+      border-radius: 12px;
+      padding: 22px;
+      vertical-align: top;
+      line-height: 1.6;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.22s ease-out, box-shadow 0.22s ease-out, border-color 0.22s ease-out;
+      transform-style: preserve-3d;
+      will-change: transform, box-shadow;
+    }
+
+    /* Dynamic cursor spotlight glow inside each card */
+    .markdown-body table td::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(67, 231, 255, 0.12) 0%, transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      border-radius: 12px;
+    }
+
+    .markdown-body table td:hover::after {
+      opacity: 1;
+    }
+
+    .markdown-body table td:hover {
+      border-color: rgba(67, 231, 255, 0.45);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(67, 231, 255, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .markdown-body table td h3 {
+      margin-top: 0;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Floating Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      z-index: 999;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--accent-cyan);
+      color: #080B14;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(67, 231, 255, 0.4);
+    }
+
+    /* Loading state */
+    .loading {
+      text-align: center;
+      padding: 90px 0;
+      color: var(--text-muted);
+      font-family: ui-monospace, monospace;
+    }
+
+    .spinner {
+      border: 3px solid rgba(67, 231, 255, 0.15);
+      border-top: 3px solid var(--accent-cyan);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ============================================================
+       MOBILE RESPONSIVE BREAKPOINT (Screen width <= 768px)
+       ============================================================ */
+    @media (max-width: 768px) {
+      header {
+        padding: 10px 14px;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      .header-top-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .actions {
+        display: flex;
+        width: 100%;
+        gap: 8px;
+      }
+
+      .tab-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 12.5px;
+        min-height: 42px;
+      }
+
+      .tab-btn kbd {
+        display: none;
+      }
+
+      .theme-toggle {
+        min-height: 42px;
+        padding: 8px 12px;
+      }
+
+      main {
+        margin: 14px auto;
+        padding: 0 10px;
+      }
+
+      .profile-card {
+        padding: 18px 14px;
+        border-radius: 12px;
+      }
+
+      /* Stack tables into single-column cards on mobile */
+      .markdown-body table,
+      .markdown-body tbody,
+      .markdown-body tr,
+      .markdown-body td {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .markdown-body table {
+        border-spacing: 0;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+
+      .markdown-body table td {
+        margin-bottom: 16px;
+        padding: 18px 16px !important;
+        transform: none !important;
+      }
+
+      #cursor-spotlight {
+        display: none !important;
+      }
+    }
+
+    /* ============================================================
+       REDUCED MOTION PREFERENCE
+       ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-content { animation: none !important; }
+      .reveal-elem { opacity: 1 !important; transform: none !important; transition: none !important; }
+      #particle-canvas { display: none !important; }
+      .profile-card::before { animation: none !important; }
+      .status-dot { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
+
+  <!-- Particle Canvas Layer -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Cursor Spotlight Layer -->
+  <div id="cursor-spotlight"></div>
+
+  <header id="site-header">
+    <div class="header-inner">
+      <div class="header-top-row">
+        <div class="brand">
+          <svg height="26" viewBox="0 0 16 16" width="26">
+            <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+          </svg>
+          <div class="repo-path">
+            <a href="https://github.com/Koushikkatkam" target="_blank" rel="noopener">Koushikkatkam</a> / <span id="current-filename">README.md</span>
+          </div>
+        </div>
+
+        <div class="server-status">
+          <div class="status-dot"></div>
+          <span>LOCAL HOST : 3000</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="tab-btn active btn-magnetic" onclick="loadContent('README.md')">
+          <span>Profile</span> <kbd>1</kbd>
+        </button>
+        <button class="tab-btn btn-magnetic" onclick="loadContent('SETUP.md')">
+          <span>Deployment Guide</span> <kbd>2</kbd>
+        </button>
+        <button class="theme-toggle btn-magnetic" onclick="toggleTheme()" id="theme-btn" title="Toggle Theme (Shortcut: T)">
+          <span id="theme-icon">☀️</span> <span id="theme-label">Light</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Scrolling Expertise Marquee Ticker -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-content">
+      <div class="ticker-item"><span class="cyan">PYTHON 3</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="violet">NEXT.JS 14</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="amber">RUST CORE</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="cyan">PYTORCH</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="violet">THREE.JS / WEBGL</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="amber">GOOGLE GEMINI API</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="cyan">FASTAPI</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="violet">POSTGRESQL &amp; PGVECTOR</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="amber">AST SQLGUARD</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="cyan">GROUNDED RAG</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="violet">GLSL SHADERS</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <!-- Duplicate for infinite seamless loop -->
+      <div class="ticker-item"><span class="cyan">PYTHON 3</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="violet">NEXT.JS 14</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="amber">RUST CORE</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="cyan">PYTORCH</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="violet">THREE.JS / WEBGL</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="amber">GOOGLE GEMINI API</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="cyan">FASTAPI</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="violet">POSTGRESQL &amp; PGVECTOR</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="amber">AST SQLGUARD</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="cyan">GROUNDED RAG</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+      <div class="ticker-item"><span class="violet">GLSL SHADERS</span></div>
+      <div class="ticker-item"><span class="dot"></span></div>
+    </div>
+  </div>
+
+  <main>
+    <div class="profile-card">
+      <div id="content" class="markdown-body">
+        <div class="loading">
+          <div class="spinner"></div>
+          <div>Loading Obsidian Aurora digital lab environment...</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Floating Back to Top Button -->
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()" title="Back to top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
+
+  <script>
+    let currentFile = 'README.md';
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // 1. Theme Persistence
+    const savedTheme = localStorage.getItem('lab-theme');
+    if (savedTheme === 'light') {
+      document.body.setAttribute('data-theme', 'light');
+      updateThemeUI('light');
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const isLight = body.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        body.removeAttribute('data-theme');
+        localStorage.setItem('lab-theme', 'dark');
+        updateThemeUI('dark');
+      } else {
+        body.setAttribute('data-theme', 'light');
+        localStorage.setItem('lab-theme', 'light');
+        updateThemeUI('light');
+      }
+    }
+
+    function updateThemeUI(theme) {
+      const icon = document.getElementById('theme-icon');
+      const label = document.getElementById('theme-label');
+      if (theme === 'light') {
+        icon.innerText = '🌙';
+        label.innerText = 'Dark';
+      } else {
+        icon.innerText = '☀️';
+        label.innerText = 'Light';
+      }
+    }
+
+    // 2. Scroll Progress Bar & Dynamic Header Hide/Reveal
+    let lastScrollY = window.scrollY;
+    const header = document.getElementById('site-header');
+    const progressBar = document.getElementById('scroll-progress-bar');
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? (currentScrollY / maxScroll) * 100 : 0;
+      progressBar.style.width = progress + '%';
+
+      // Auto-hide navigation on scroll down, reveal on scroll up
+      if (currentScrollY > 200 && currentScrollY > lastScrollY + 8) {
+        header.classList.add('nav-hidden');
+      } else if (currentScrollY < lastScrollY - 4) {
+        header.classList.remove('nav-hidden');
+      }
+      lastScrollY = currentScrollY;
+
+      // Back to top visibility
+      if (currentScrollY > 350) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 3. Subtle Pointer Spotlight & Magnetic Buttons
+    const spotlight = document.getElementById('cursor-spotlight');
+    let pointerX = 0, pointerY = 0;
+
+    if (!reduceMotion && window.matchMedia("(hover: hover)").matches) {
+      window.addEventListener('pointermove', (e) => {
+        pointerX = e.clientX;
+        pointerY = e.clientY;
+        spotlight.style.opacity = '1';
+        spotlight.style.left = pointerX + 'px';
+        spotlight.style.top = pointerY + 'px';
+      });
+
+      document.addEventListener('pointerleave', () => {
+        spotlight.style.opacity = '0';
+      });
+
+      // Magnetic buttons effect
+      document.querySelectorAll('.btn-magnetic').forEach(btn => {
+        btn.addEventListener('pointermove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = (e.clientX - (rect.left + rect.width / 2)) * 0.22;
+          const y = (e.clientY - (rect.top + rect.height / 2)) * 0.22;
+          btn.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        btn.addEventListener('pointerleave', () => {
+          btn.style.transform = 'translate(0px, 0px)';
+        });
+      });
+    }
+
+    // 4. Lightweight Bounded Background Particle System
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const PARTICLE_COUNT = 32;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset(true);
+      }
+      reset(initial = false) {
+        this.x = Math.random() * canvas.width;
+        this.y = initial ? Math.random() * canvas.height : canvas.height + 10;
+        this.size = Math.random() * 2 + 1;
+        this.speedY = Math.random() * 0.45 + 0.15;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.7 + 0.2;
+        this.fadeSpeed = Math.random() * 0.008 + 0.003;
+        this.fadeDir = Math.random() > 0.5 ? 1 : -1;
+        
+        // Color distribution
+        const r = Math.random();
+        if (r < 0.5) this.color = '67, 231, 255'; // Cyan
+        else if (r < 0.82) this.color = '148, 117, 255'; // Violet
+        else this.color = '255, 180, 84'; // Amber
+      }
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        this.opacity += this.fadeSpeed * this.fadeDir;
+        if (this.opacity > 0.9) this.fadeDir = -1;
+        if (this.opacity < 0.15) this.fadeDir = 1;
+
+        if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
+          this.reset(false);
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = `rgba(${this.color}, 0.6)`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(new Particle());
+    }
+
+    let isAnimating = true;
+    function renderParticles() {
+      if (!isAnimating || reduceMotion) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of particles) {
+        p.update();
+        p.draw();
+      }
+      requestAnimationFrame(renderParticles);
+    }
+    if (!reduceMotion) {
+      renderParticles();
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        isAnimating = false;
+      } else {
+        isAnimating = true;
+        if (!reduceMotion) renderParticles();
+      }
+    });
+
+    // 5. Card 3D Tilt & Cursor Follow Highlight
+    function attachCardTilt() {
+      if (reduceMotion || !window.matchMedia("(hover: hover)").matches) return;
+
+      const cards = document.querySelectorAll('.markdown-body table td');
+      cards.forEach(card => {
+        card.addEventListener('pointermove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const px = x / rect.width;
+          const py = y / rect.height;
+
+          // Subtle tilt angle (max 4.5deg)
+          const rx = (0.5 - py) * 9;
+          const ry = (px - 0.5) * 9;
+
+          card.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
+          card.style.setProperty('--mouse-x', `${(px * 100).toFixed(1)}%`);
+          card.style.setProperty('--mouse-y', `${(py * 100).toFixed(1)}%`);
+        });
+
+        card.addEventListener('pointerleave', () => {
+          card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        });
+      });
+    }
+
+    // 6. Scroll-Based Section & Card Reveals
+    function initScrollReveals() {
+      const targets = document.querySelectorAll('.markdown-body h2, .markdown-body table, .markdown-body img, .markdown-body blockquote');
+      if (!('IntersectionObserver' in window) || reduceMotion) {
+        targets.forEach(el => el.classList.add('is-revealed'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+
+      targets.forEach(el => {
+        el.classList.add('reveal-elem');
+        observer.observe(el);
+      });
+    }
+
+    // 7. Load & Parse Markdown Content
+    async function loadContent(file) {
+      currentFile = file;
+      document.getElementById('current-filename').innerText = file;
+      
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        if (btn.innerText.includes(file === 'README.md' ? 'Profile' : 'Deployment Guide')) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      const container = document.getElementById('content');
+      container.innerHTML = `
+        <div class="loading">
+          <div class="spinner"></div>
+          <div>Rendering ${file}...</div>
+        </div>
+      `;
+
+      try {
+        const response = await fetch(file + '?t=' + Date.now());
+        if (!response.ok) throw new Error('File load failed');
+        const markdown = await response.text();
+        
+        if (window.marked) {
+          marked.setOptions({
+            gfm: true,
+            breaks: false,
+            tables: true
+          });
+          container.innerHTML = marked.parse(markdown);
+        } else {
+          container.innerText = markdown;
+        }
+
+        // Post-render animation setup
+        attachCardTilt();
+        initScrollReveals();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (err) {
+        container.innerHTML = `<div style="color: #ff6b6b; padding: 40px; text-align: center;">Error loading ${file}: ${err.message}</div>`;
+      }
+    }
+
+    // Keyboard Shortcuts (Laptop Power Users)
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === '1') loadContent('README.md');
+      if (e.key === '2') loadContent('SETUP.md');
+      if (e.key === 't' || e.key === 'T') toggleTheme();
+    });
+
+    // Initial Load
+    window.addEventListener('DOMContentLoaded', () => {
+      loadContent('README.md');
+    });
+  </script>
+</body>
+</html>

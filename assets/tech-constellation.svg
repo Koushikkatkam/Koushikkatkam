@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="const-title const-desc" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <title id="const-title">Technical Constellation — Digital Lab Node Network</title>
+  <desc id="const-desc">Interactive animated technical constellation showing verified engineering disciplines, interconnected technologies, and traveling data pulses in the Obsidian Aurora palette.</desc>
+
+  <defs>
+    <!-- Background and Glows -->
+    <linearGradient id="net-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080B14"/>
+      <stop offset="60%" stop-color="#0E1626"/>
+      <stop offset="100%" stop-color="#101827"/>
+    </linearGradient>
+
+    <!-- Edge Gradients -->
+    <linearGradient id="edge-cyan-violet" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#43E7FF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#9475FF" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="edge-violet-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9475FF" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#FFB454" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="edge-cyan-amber" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#43E7FF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FFB454" stop-opacity="0.4"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="node-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    .net-mono { font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 11px; font-weight: 600; }
+    .net-label { font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 12px; font-weight: 700; }
+    .hub-label { font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 13.5px; font-weight: 800; }
+
+    /* Self-Drawing Paths */
+    .net-path {
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: drawNet 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes drawNet { to { stroke-dashoffset: 0; } }
+
+    /* Node Breathing Animation */
+    .pulse-node { animation: breathe 3s ease-in-out infinite alternate; }
+    @keyframes breathe {
+      0% { transform: scale(1); opacity: 0.85; }
+      100% { transform: scale(1.18); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .net-path { stroke-dashoffset: 0 !important; animation: none !important; }
+      .pulse-node { animation: none !important; }
+      animateMotion, animate { display: none !important; }
+    }
+  </style>
+
+  <!-- Background Container -->
+  <rect width="1200" height="340" rx="16" fill="url(#net-bg)" stroke="#43E7FF" stroke-opacity="0.22" stroke-width="1.2"/>
+
+  <!-- Network Title Bar -->
+  <g transform="translate(36, 32)">
+    <circle cx="5" cy="0" r="4" fill="#43E7FF" filter="url(#node-glow)"/>
+    <text x="18" y="4" class="net-mono" fill="#43E7FF" letter-spacing="1.5">◈ TECHNICAL CONSTELLATION // INTERCONNECTED STACK</text>
+    <text x="760" y="4" class="net-mono" fill="#9BA9BF" opacity="0.75">AST SANDBOX · RAG · GPU SHADERS · HIGH-PERFORMANCE CLI</text>
+  </g>
+
+  <!-- =========================================================
+       NETWORK PATHS (INTERCONNECTING CIRCUITS)
+       ========================================================= -->
+  <g fill="none" stroke-width="1.3">
+    <!-- Center to Cluster 1 (Languages) -->
+    <path id="p-center-lang" class="net-path" d="M 600 170 L 330 110" stroke="url(#edge-cyan-violet)"/>
+    <!-- Center to Cluster 2 (AI/Data) -->
+    <path id="p-center-ai" class="net-path" d="M 600 170 L 870 100" stroke="url(#edge-violet-amber)"/>
+    <!-- Center to Cluster 3 (Full-Stack) -->
+    <path id="p-center-full" class="net-path" d="M 600 170 L 400 255" stroke="url(#edge-cyan-amber)"/>
+    <!-- Center to Cluster 4 (Security/Systems) -->
+    <path id="p-center-sec" class="net-path" d="M 600 170 L 810 250" stroke="url(#edge-cyan-violet)"/>
+
+    <!-- Outer Interconnects -->
+    <path id="p-lang-full" class="net-path" d="M 330 110 L 140 135 L 180 230 L 400 255" stroke="#43E7FF" stroke-opacity="0.3" stroke-dasharray="4 4"/>
+    <path id="p-ai-sec" class="net-path" d="M 870 100 L 1050 140 L 1010 235 L 810 250" stroke="#9475FF" stroke-opacity="0.3" stroke-dasharray="4 4"/>
+    <path id="p-top-cross" class="net-path" d="M 330 110 Q 600 70 870 100" stroke="url(#edge-cyan-violet)" stroke-opacity="0.45"/>
+    <path id="p-bottom-cross" class="net-path" d="M 400 255 Q 600 295 810 250" stroke="url(#edge-violet-amber)" stroke-opacity="0.45"/>
+  </g>
+
+  <!-- =========================================================
+       TRAVELING TELEMETRY DATA PULSES
+       ========================================================= -->
+  <g>
+    <!-- Pulse 1: Center to AI -->
+    <circle r="3.5" fill="#43E7FF" filter="url(#node-glow)">
+      <animateMotion dur="4.2s" repeatCount="indefinite" begin="0.5s">
+        <mpath href="#p-center-ai"/>
+      </animateMotion>
+    </circle>
+
+    <!-- Pulse 2: Center to Security -->
+    <circle r="3" fill="#FFB454" filter="url(#node-glow)">
+      <animateMotion dur="3.8s" repeatCount="indefinite" begin="1.2s">
+        <mpath href="#p-center-sec"/>
+      </animateMotion>
+    </circle>
+
+    <!-- Pulse 3: Languages to Full-Stack -->
+    <circle r="3" fill="#9475FF" filter="url(#node-glow)">
+      <animateMotion dur="5.5s" repeatCount="indefinite" begin="0.8s">
+        <mpath href="#p-lang-full"/>
+      </animateMotion>
+    </circle>
+
+    <!-- Pulse 4: Top Cross -->
+    <circle r="3.2" fill="#43E7FF" filter="url(#node-glow)">
+      <animateMotion dur="6.2s" repeatCount="indefinite" begin="2s">
+        <mpath href="#p-top-cross"/>
+      </animateMotion>
+    </circle>
+
+    <!-- Pulse 5: Bottom Cross -->
+    <circle r="3.2" fill="#FFB454" filter="url(#node-glow)">
+      <animateMotion dur="5.8s" repeatCount="indefinite" begin="1.5s">
+        <mpath href="#p-bottom-cross"/>
+      </animateMotion>
+    </circle>
+  </g>
+
+  <!-- =========================================================
+       CONSTELLATION NODES & SKILL TAGS
+       ========================================================= -->
+
+  <!-- NODE: CENTRAL HUB (Digital Lab Core) -->
+  <g transform="translate(600, 170)">
+    <circle cx="0" cy="0" r="42" fill="#101827" stroke="url(#edge-cyan-violet)" stroke-width="2" filter="url(#node-glow)"/>
+    <circle cx="0" cy="0" r="32" fill="#080B14" stroke="#43E7FF" stroke-width="1.2" stroke-opacity="0.8"/>
+    <circle cx="0" cy="0" r="8" fill="#43E7FF" filter="url(#node-glow)">
+      <animate attributeName="r" values="7; 9.5; 7" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="3" fill="#F2F6FF"/>
+    <!-- Label -->
+    <rect x="-65" y="48" width="130" height="22" rx="6" fill="#101827" stroke="#43E7FF" stroke-opacity="0.4" stroke-width="1"/>
+    <text x="0" y="63" class="hub-label" fill="#F2F6FF" text-anchor="middle">DIGITAL LAB CORE</text>
+  </g>
+
+  <!-- NODE 1: LANGUAGES & RUNTIMES (Top Left: 330, 110) -->
+  <g transform="translate(330, 110)">
+    <circle cx="0" cy="0" r="22" fill="#101827" stroke="#43E7FF" stroke-width="1.8" filter="url(#node-glow)"/>
+    <circle cx="0" cy="0" r="7" fill="#43E7FF"/>
+    <rect x="-80" y="-38" width="160" height="22" rx="5" fill="#101827" stroke="#43E7FF" stroke-opacity="0.4" stroke-width="1"/>
+    <text x="0" y="-23" class="net-label" fill="#43E7FF" text-anchor="middle">PYTHON · TS · RUST</text>
+    <text x="0" y="36" class="net-mono" fill="#9BA9BF" text-anchor="middle">Async Tokio · Node · SQL</text>
+  </g>
+
+  <!-- NODE 2: SATELLITE NODE LEFT (140, 135) -->
+  <g transform="translate(140, 135)">
+    <circle cx="0" cy="0" r="14" fill="#101827" stroke="#9475FF" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="4.5" fill="#9475FF"/>
+    <rect x="-65" y="-30" width="130" height="19" rx="4" fill="#080B14" stroke="#9475FF" stroke-opacity="0.4" stroke-width="0.8"/>
+    <text x="0" y="-17" class="net-mono" fill="#F2F6FF" text-anchor="middle">PostgreSQL · Prisma</text>
+  </g>
+
+  <!-- NODE 3: FULL-STACK & WEB (Bottom Left: 400, 255) -->
+  <g transform="translate(400, 255)">
+    <circle cx="0" cy="0" r="20" fill="#101827" stroke="#43E7FF" stroke-width="1.8" filter="url(#node-glow)"/>
+    <circle cx="0" cy="0" r="6" fill="#43E7FF"/>
+    <rect x="-80" y="26" width="160" height="22" rx="5" fill="#101827" stroke="#43E7FF" stroke-opacity="0.4" stroke-width="1"/>
+    <text x="0" y="41" class="net-label" fill="#43E7FF" text-anchor="middle">NEXT.JS 14 · REACT</text>
+    <text x="0" y="-25" class="net-mono" fill="#9BA9BF" text-anchor="middle">Tailwind · Zustand · Vite</text>
+  </g>
+
+  <!-- NODE 4: AI & SCIENTIFIC DATA (Top Right: 870, 100) -->
+  <g transform="translate(870, 100)">
+    <circle cx="0" cy="0" r="22" fill="#101827" stroke="#9475FF" stroke-width="1.8" filter="url(#node-glow)"/>
+    <circle cx="0" cy="0" r="7" fill="#9475FF"/>
+    <rect x="-85" y="-38" width="170" height="22" rx="5" fill="#101827" stroke="#9475FF" stroke-opacity="0.45" stroke-width="1"/>
+    <text x="0" y="-23" class="net-label" fill="#9475FF" text-anchor="middle">PYTORCH · GEMINI · RAG</text>
+    <text x="0" y="36" class="net-mono" fill="#9BA9BF" text-anchor="middle">Grad-CAM · pgvector · NetCDF4</text>
+  </g>
+
+  <!-- NODE 5: SATELLITE NODE RIGHT (1050, 140) -->
+  <g transform="translate(1050, 140)">
+    <circle cx="0" cy="0" r="14" fill="#101827" stroke="#FFB454" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="4.5" fill="#FFB454"/>
+    <rect x="-65" y="-30" width="130" height="19" rx="4" fill="#080B14" stroke="#FFB454" stroke-opacity="0.4" stroke-width="0.8"/>
+    <text x="0" y="-17" class="net-mono" fill="#FFB454" text-anchor="middle">ArcFace · ONNX</text>
+  </g>
+
+  <!-- NODE 6: SECURITY & WEBGL (Bottom Right: 810, 250) -->
+  <g transform="translate(810, 250)">
+    <circle cx="0" cy="0" r="20" fill="#101827" stroke="#FFB454" stroke-width="1.8" filter="url(#node-glow)"/>
+    <circle cx="0" cy="0" r="6" fill="#FFB454"/>
+    <rect x="-85" y="26" width="170" height="22" rx="5" fill="#101827" stroke="#FFB454" stroke-opacity="0.45" stroke-width="1"/>
+    <text x="0" y="41" class="net-label" fill="#FFB454" text-anchor="middle">SECURITY &amp; WEBGL 3D</text>
+    <text x="0" y="-25" class="net-mono" fill="#9BA9BF" text-anchor="middle">Three.js · Shaders · Threat SSE</text>
+  </g>
+
+</svg>
