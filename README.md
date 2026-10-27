@@ -237,13 +237,20 @@ A curated collection of production applications, intelligent systems, and intera
 
 <div align="center">
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Koushikkatkam/Koushikkatkam/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Koushikkatkam/Koushikkatkam/output/github-contribution-grid-snake.svg">
+  <img alt="Koushik Katkam Contribution Snake" src="https://raw.githubusercontent.com/Koushikkatkam/Koushikkatkam/output/github-contribution-grid-snake.svg" width="100%"/>
+</picture>
+
+<br/><br/>
+
 <img src="assets/activity-grid.svg" alt="Obsidian Aurora Contribution Matrix" width="100%"/>
 
 </div>
 
-> **Automated Contribution Snake Workflow:**  
-> This repository includes an automated GitHub Actions pipeline ([`.github/workflows/snake.yml`](.github/workflows/snake.yml)) configured with Platane's snake engine. Once enabled on GitHub, the workflow automatically commits updated contribution snakes into the `output` branch.  
-> *Refer to [`SETUP.md`](SETUP.md) for step-by-step instructions on enabling Actions write permissions and activating dynamic SVG rendering.*
+> **Automated Contribution Snake Telemetry:**  
+> Powered by an automated GitHub Actions pipeline ([`.github/workflows/snake.yml`](.github/workflows/snake.yml)) that runs on scheduled cron triggers to generate and commit real-time contribution snakes into the `output` branch.
 
 <div align="center">
   <img src="assets/section-rule.svg" alt="Section Divider" width="100%"/>
